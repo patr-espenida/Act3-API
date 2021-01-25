@@ -59,20 +59,24 @@ function fetchMarsData(data) {
     if (data.photos) {
         $('#main').html('')
         $('#main').html(`<h1 class="text-center text-uppercase mt-5 fw-light">Pictures taken from Mars</h1>`)
-        $('#main').append(`<div id="gallery" class="w-75 mx-auto mt-5"></div>`)
+        $('#main').append(`<div class="container mt-5">
+                <div class="row" id="gallery"></div>
+         </div>
+        `)
         data.photos.forEach((element) => {
             $('#gallery').append(`
-            <div class="card mx-auto w-75 mt-5">
-            <img src="${element.img_src}" alt="" class="card-img-top">
-            <div class="card-body">
-                    <h5 class="card-title text-center">${data.photos[0].camera.name}</h5>
-                    <p class="card-text fw-light">${data.photos[0].camera.full_name}</p>
-                </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="card h-100 ">
+                    <img src="${element.img_src}" alt="" class="card-img-top">
+                <div class="card-body">
+                        <h5 class="card-title text-center">${data.photos[0].camera.name}</h5>
+                        <p class="card-text fw-light">${data.photos[0].camera.full_name}</p>
+                    </div>
                 <div class="card-footer text-muted">
                     <p class="text-italic">${data.photos[0].earth_date}</p>
                     <i>${data.photos[0].rover.name}</i>
                 </div>
-        </div>
+            </div>
     `)
         })
     }
@@ -130,7 +134,7 @@ $('#searchForm').on('submit', function(e) {
             response.collection.items.forEach(item => {
                 if (item.data[0].media_type === 'image') {
                     $('#results').append(`
-                    <div class="col-4 mb-3">
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
                         <div class="card h-100 ">
                             <img src="${item.links[0].href}" class="card-img-top" alt="...">
                             <div class="card-body">
