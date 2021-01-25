@@ -61,7 +61,19 @@ function fetchMarsData(data) {
         $('#main').html(`<h1 class="text-center text-uppercase mt-5 fw-light">Pictures taken from Mars</h1>`)
         $('#main').append(`<div id="gallery" class="w-75 mx-auto mt-5"></div>`)
         data.photos.forEach((element) => {
-            $('#gallery').append(`<img src="${element.img_src}" class="img-thumbnail w-25 m-5 mx-auto mb-2 " alt="" width=200>`)
+            $('#gallery').append(`
+            <div class="card mx-auto w-75 mt-5">
+            <img src="${element.img_src}" alt="" class="card-img-top">
+            <div class="card-body">
+                    <h5 class="card-title text-center">${data.photos[0].camera.name}</h5>
+                    <p class="card-text fw-light">${data.photos[0].camera.full_name}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <p class="text-italic">${data.photos[0].earth_date}</p>
+                    <i>${data.photos[0].rover.name}</i>
+                </div>
+        </div>
+    `)
         })
     }
 }
